@@ -10,7 +10,7 @@ import wildlife.care.service.SpeciesService;
 import java.util.List;
 
 @RestController
-public class SpeciesConroller {
+public class SpeciesController {
 
     @Autowired
     SpeciesService speciesService;

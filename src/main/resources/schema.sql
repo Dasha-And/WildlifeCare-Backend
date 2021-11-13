@@ -14,7 +14,8 @@ CREATE TABLE IF NOT EXISTS Animal(
     species int NOT NULL,
     national_park_id int,
     FOREIGN KEY (species) REFERENCES Species(id),
-    CONSTRAINT fk_national_park FOREIGN KEY (national_park_id) REFERENCES National_park(id)
+    CONSTRAINT fk_national_park FOREIGN KEY (national_park_id) REFERENCES National_park(id),
+    CONSTRAINT fk_species_id FOREIGN KEY (species) REFERENCES Species(id)
 );
 
 CREATE TABLE IF NOT EXISTS National_park(
@@ -35,5 +36,22 @@ CREATE TABLE IF NOT EXISTS Worker(
   national_park_id int NOT NULL,
   position character varying NOT NULL,
   CONSTRAINT fk_national_park FOREIGN KEY (national_park_id) REFERENCES National_park(id)
+);
+
+CREATE TABLE IF NOT EXISTS Vaccine(
+    id serial PRIMARY KEY,
+    name character varying NOT NULL,
+    disease character varying NOT NULL,
+    periodicity character varying NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Animal_vaccination(
+    id int PRIMARY KEY,
+    vaccine_id int NOT NULL,
+    animal_id int NOT NULL,
+    date date NOT NULL,
+    doze double precision NOT NULL,
+    CONSTRAINT fk_vaccine FOREIGN KEY (vaccine_id) REFERENCES Vaccine(id),
+    CONSTRAINT fk_animal FOREIGN KEY (animal_id) REFERENCES Animal(id)
 );
 

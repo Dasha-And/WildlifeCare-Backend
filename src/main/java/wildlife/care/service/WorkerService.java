@@ -17,6 +17,10 @@ public class WorkerService {
         return workerRepository.findAll();
     }
 
+    public List<Worker> findAllByPosition(String position) {
+        return workerRepository.getAllByPosition(position);
+    }
+
     public Worker findById(int id) {
         return workerRepository.findById(id);
     }
