@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS Worker(
   password character varying NOT NULL,
   date_of_birth date NOT NULL,
   national_park_id int NOT NULL,
-  position character varying NOT NULL,
+  role character varying NOT NULL,
   CONSTRAINT fk_national_park FOREIGN KEY (national_park_id) REFERENCES National_park(id)
 );
 

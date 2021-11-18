@@ -21,8 +21,8 @@ public class WorkerService {
         return workerRepository.findAll();
     }
 
-    public List<Worker> findAllByPosition(String position) {
-        return workerRepository.getAllByPosition(position);
+    public List<Worker> findAllByPosition(String role) {
+        return workerRepository.getAllByRole(role);
     }
 
     public Worker findById(int id) {
@@ -41,7 +41,7 @@ public class WorkerService {
         workerRepository.deleteById(id);
     }
 
-    public static double theShortestDistance(double latitudeOfAnimal, double longitudeOfAnimal, Map<Double, Double> allRangersCoordinates) {
+    public double theShortestDistance(double latitudeOfAnimal, double longitudeOfAnimal, Map<Double, Double> allRangersCoordinates) {
 
         final int R = 6371; // Radius of the earth
         ArrayList<Double> distances = new ArrayList<>();
@@ -61,10 +61,10 @@ public class WorkerService {
         return sortedDistances.get(0);
     }
 
-    public static void main(String[] args) {
-        Map<Double, Double> coodrinates = new HashMap<>();
-        coodrinates.put(50.013179230930724, 36.22686706427211);
-        coodrinates.put(50.03690272382028, 36.23191758161718);
-        System.out.println(theShortestDistance(50.036094788778996, 36.23411795167835, coodrinates));
-    }
+//    public static void main(String[] args) {
+//        Map<Double, Double> coodrinates = new HashMap<>();
+//        coodrinates.put(50.013179230930724, 36.22686706427211);
+//        coodrinates.put(50.03690272382028, 36.23191758161718);
+//        System.out.println(theShortestDistance(50.036094788778996, 36.23411795167835, coodrinates));
+//    }
 }

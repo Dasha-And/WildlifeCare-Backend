@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface WorkerRepository extends JpaRepository<Worker, Integer> {
     Worker findById(int id);
-    List<Worker> getAllByPosition(String position);
+    List<Worker> getAllByRole(String role);
 }

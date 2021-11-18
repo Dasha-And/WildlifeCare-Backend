@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.*;
 import wildlife.care.model.Worker;
 import wildlife.care.service.WorkerService;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class WorkerController {
@@ -43,6 +45,14 @@ public class WorkerController {
     @DeleteMapping(path = "/delete_worker")
     public void deleteWorker(@RequestParam int id) {
         workerService.deleteWorker(id);
+    }
+
+    @GetMapping(path = "/shortest_distance")
+    public double getShortestDistance(@RequestParam double lat, @RequestParam double lon) {
+        Map<Double, Double> coodrinates = new HashMap<>();
+        coodrinates.put(50.013179230930724, 36.22686706427211);
+        coodrinates.put(50.03690272382028, 36.23191758161718);
+        return this.workerService.theShortestDistance(lat, lon, coodrinates);
     }
 }
 

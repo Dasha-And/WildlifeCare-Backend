@@ -1,12 +1,14 @@
 package wildlife.care.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import wildlife.care.model.Vaccine;
 import wildlife.care.repository.VaccineRepository;
 
 import java.sql.Date;
 import java.util.List;
 
+@Service
 public class VaccineService {
 
     String YEAR = "year";
