@@ -40,4 +40,5 @@ public class VaccineController {
     public void deleteVaccine(@RequestParam int id) {
         vaccineService.deleteVaccine(id);
     }
+
 }
