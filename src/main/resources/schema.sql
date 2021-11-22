@@ -7,6 +7,15 @@ CREATE TABLE IF NOT EXISTS Species(
     icon_url character varying NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS National_park(
+    id serial PRIMARY KEY,
+    name character varying NOT NULL,
+    country character varying NOT NULL,
+    region character varying,
+    longitude double precision NOT NULL,
+    latitude double precision NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS Animal(
     id serial PRIMARY KEY,
     name character varying NOT NULL,
@@ -18,14 +27,7 @@ CREATE TABLE IF NOT EXISTS Animal(
     CONSTRAINT fk_species_id FOREIGN KEY (species) REFERENCES Species(id)
 );
 
-CREATE TABLE IF NOT EXISTS National_park(
-    id serial PRIMARY KEY,
-    name character varying NOT NULL,
-    country character varying NOT NULL,
-    region character varying,
-    longitude double precision NOT NULL,
-    latitude double precision NOT NULL
-);
+
 
 CREATE TABLE IF NOT EXISTS Worker(
   id serial PRIMARY KEY,
