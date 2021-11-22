@@ -25,14 +25,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+        http.csrf().disable().authorizeRequests()
                 .antMatchers("/create_nationalPark",
                         "/update_nationalPark", "/delete_nationalPark",
-                        "/nationalPark", "/nationalPark_all", "/create_species", "/update_species", "/delete_species").hasRole("SUPERADMIN")
+                        "/nationalPark", "/nationalParks", "/create_species", "/update_species", "/delete_species").hasRole("SUPERADMIN")
                 .antMatchers("/create_animal",
-                        "/update_animal", "/delete_animal", "/create_worker").hasRole("ADMIN")
-                .antMatchers("/create_vaccine").hasAnyRole("ADMIN", "VETERINARIAN")
-                .antMatchers("/").permitAll()
+                        "/update_animal", "/delete_animal", "/create_worker", "/workers", "/shortest_distance").permitAll()
+                .antMatchers("/create_vaccine", "/vaccines", "/update_vaccine", "/delete_vaccine").permitAll()
+                .antMatchers("/next_vaccination", "/animalVaccinations", "/create_animalVaccination",
+                        "/animalVaccination", "/update_animalVaccination", "/delete_animalVaccination", "/create_vaccine").permitAll()
+                .antMatchers("/", "/species_all").permitAll()
                 .and().formLogin().successHandler(loginSuccessHandler)
                 .permitAll().and()
                 .logout()

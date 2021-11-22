@@ -17,9 +17,9 @@ public class WorkerController {
     @Autowired
     WorkerService workerService;
 
-    @GetMapping(path = "/worker_all")
-    public List<Worker> findAll() {
-        return workerService.findAll();
+    @GetMapping(path = "{nationalParkId}/workers")
+    public List<Worker> findAll(@PathVariable int nationalParkId) {
+        return workerService.findAllFromNationalPark(nationalParkId);
     }
 
     @GetMapping(path = "/workers/{position}")

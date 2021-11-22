@@ -15,7 +15,7 @@ public class NationalParkController {
     @Autowired
     NationalParkService nationalParkService;
 
-    @GetMapping(path = "/nationalPark_all")
+    @GetMapping(path = "/nationalParks")
     public List<NationalPark> findAll() {
         return nationalParkService.findAll();
     }

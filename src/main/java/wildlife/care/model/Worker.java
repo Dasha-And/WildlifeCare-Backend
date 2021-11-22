@@ -33,7 +33,7 @@ public class Worker {
     private Date date_of_birth;
 
     @Column(name = "national_park_id")
-    private int national_park_id;
+    private int nationalParkId;
 
     @Column(name = "role")
     private String role;

@@ -25,9 +25,9 @@ public class AnimalController {
     @Autowired
     AnimalConverter animalConverter;
 
-    @GetMapping(path = "/animals")
-    public List<AnimalDto> findAll() {
-        return animalService.findAll().stream().map(el -> animalConverter.toDto(el)).collect(Collectors.toList());
+    @GetMapping(path = "{nationalParkId}/animals")
+    public List<AnimalDto> findAll(@PathVariable int nationalParkId) {
+        return animalService.findAllFromNationalPark(nationalParkId).stream().map(el -> animalConverter.toDto(el)).collect(Collectors.toList());
     }
 
     @PostMapping(path = "/create_animal")

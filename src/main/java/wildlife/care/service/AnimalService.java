@@ -17,6 +17,10 @@ public class AnimalService {
         return animalRepository.findAll();
     }
 
+    public List<Animal> findAllFromNationalPark(int nationalParkId) {
+        return animalRepository.findAnimalsByNationalParkId(nationalParkId);
+    }
+
     public Animal findById(int id) {
         return animalRepository.findById(id);
     }

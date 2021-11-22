@@ -22,13 +22,13 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
         String redirectURL = request.getContextPath();
 
         if (userDetails.hasRole("ROLE_SUPERADMIN")) {
-            redirectURL = "/nationalPark_all";
+            redirectURL = "/nationalParks";
         } else if (userDetails.hasRole("ROLE_ADMIN")) {
             redirectURL = "/animals";
         } else if (userDetails.hasRole("ROLE_RANGER")) {
-            redirectURL = "";
+            redirectURL = "/animals";
         } else if (userDetails.hasRole("ROLE_VETERINARIAN")) {
-            redirectURL = "/vaccine_all";
+            redirectURL = "/vaccines";
         }
 
         response.sendRedirect(redirectURL);

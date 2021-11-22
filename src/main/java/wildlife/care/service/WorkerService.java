@@ -21,6 +21,10 @@ public class WorkerService {
         return workerRepository.findAll();
     }
 
+    public List<Worker> findAllFromNationalPark(int nationalParkId) {
+        return workerRepository.findWorkersByNationalParkId(nationalParkId);
+    }
+
     public List<Worker> findAllByPosition(String role) {
         return workerRepository.getAllByRole(role);
     }
@@ -61,10 +65,4 @@ public class WorkerService {
         return sortedDistances.get(0);
     }
 
-//    public static void main(String[] args) {
-//        Map<Double, Double> coodrinates = new HashMap<>();
-//        coodrinates.put(50.013179230930724, 36.22686706427211);
-//        coodrinates.put(50.03690272382028, 36.23191758161718);
-//        System.out.println(theShortestDistance(50.036094788778996, 36.23411795167835, coodrinates));
-//    }
 }

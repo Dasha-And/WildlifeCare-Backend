@@ -30,5 +30,5 @@ public class Animal {
     private int species;
 
     @Column(name = "national_park_id")
-    private int national_park_id;
+    private int nationalParkId;
 }

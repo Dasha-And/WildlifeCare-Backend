@@ -10,13 +10,13 @@ import wildlife.care.service.VaccineService;
 
 import java.util.List;
 
-@Controller
+@RestController
 public class VaccineController {
 
     @Autowired
     VaccineService vaccineService;
 
-    @GetMapping(path = "/vaccine_all")
+    @GetMapping(path = "/vaccines")
     public List<Vaccine> findAll() {
         return vaccineService.findAll();
     }

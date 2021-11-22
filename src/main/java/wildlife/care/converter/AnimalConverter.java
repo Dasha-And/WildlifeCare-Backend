@@ -19,6 +19,6 @@ public class AnimalConverter {
 
     public AnimalDto toDto(Animal animal) {
         String speciesName = speciesService.getNameById(animal.getSpecies());
-        return new AnimalDto(animal.getId(), animal.getName(), animal.getDate_of_birth(), speciesName, animal.getNational_park_id());
+        return new AnimalDto(animal.getId(), animal.getName(), animal.getDate_of_birth(), speciesName, animal.getNationalParkId());
     }
 }
