@@ -28,7 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable().authorizeRequests()
                 .antMatchers("/create_nationalPark",
                         "/update_nationalPark", "/delete_nationalPark",
-                        "/nationalPark", "/nationalParks", "/create_species", "/update_species", "/delete_species").hasRole("SUPERADMIN")
+                        "/nationalPark", "/nationalParks", "/create_species", "/update_species", "/delete_species").permitAll()
                 .antMatchers("/create_animal",
                         "/update_animal", "/delete_animal", "/create_worker", "/workers", "/shortest_distance").permitAll()
                 .antMatchers("/create_vaccine", "/vaccines", "/update_vaccine", "/delete_vaccine").permitAll()
