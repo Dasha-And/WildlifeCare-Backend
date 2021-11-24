@@ -45,6 +45,10 @@ public class WorkerService {
         workerRepository.deleteById(id);
     }
 
+    public Worker getWorkerDetailsByUsername(String username) {
+        return workerRepository.findByUsername(username);
+    }
+
     public double theShortestDistance(double latitudeOfAnimal, double longitudeOfAnimal, Map<Double, Double> allRangersCoordinates) {
 
         final int R = 6371; // Radius of the earth

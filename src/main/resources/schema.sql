@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS Worker(
   id serial PRIMARY KEY,
   name character varying NOT NULL,
   surname character varying NOT NULL,
+  username character varying NOT NULL,
   password character varying NOT NULL,
   date_of_birth date NOT NULL,
   national_park_id int NOT NULL,

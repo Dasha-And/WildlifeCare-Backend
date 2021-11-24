@@ -11,4 +11,5 @@ public interface WorkerRepository extends JpaRepository<Worker, Integer> {
     Worker findById(int id);
     List<Worker> getAllByRole(String role);
     List<Worker> findWorkersByNationalParkId(int nationalParkId);
+    Worker findByUsername(String username);
 }

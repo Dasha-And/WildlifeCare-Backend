@@ -20,6 +20,9 @@ public class Worker {
     @Column(nullable = false)
     private int id;
 
+    @Column(name = "username")
+    private String username;
+
     @Column(name = "name")
     private String name;
 

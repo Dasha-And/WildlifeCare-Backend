@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import wildlife.care.exceptions.UserIsNotRegistered;
+import wildlife.care.exceptions.WrongPasswordException;
+import wildlife.care.model.LoginForm;
 import wildlife.care.model.Worker;
 import wildlife.care.service.WorkerService;
 
@@ -53,6 +56,18 @@ public class WorkerController {
         coodrinates.put(50.013179230930724, 36.22686706427211);
         coodrinates.put(50.03690272382028, 36.23191758161718);
         return this.workerService.theShortestDistance(lat, lon, coodrinates);
+    }
+
+    @PostMapping(path = "/login")
+    public ResponseEntity<Worker> login(@RequestBody LoginForm userLoginForm) throws WrongPasswordException, UserIsNotRegistered {
+        Worker user = workerService.getWorkerDetailsByUsername(userLoginForm.getUsername());
+        if (user != null && user.getPassword().equals(userLoginForm.getPassword())) {
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        } if (user != null && !user.getPassword().equals(userLoginForm.getPassword())) {
+            throw new WrongPasswordException("Wrong password");
+        } else {
+            throw new UserIsNotRegistered("User with such login does not exist");
+        }
     }
 }
 
