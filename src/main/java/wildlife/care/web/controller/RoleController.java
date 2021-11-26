@@ -8,6 +8,7 @@ import wildlife.care.model.Role;
 import wildlife.care.service.RoleService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class RoleController {
@@ -17,7 +18,7 @@ public class RoleController {
 
     @GetMapping(path = "/role_all")
     public List<Role> findAll() {
-        return roleService.findAll();
+        return roleService.findAll().stream().filter(el -> !el.getName().equals("ROLE_SUPERADMIN") && !el.getName().equals("ROLE_ADMIN")).collect(Collectors.toList());
     }
 
     @PostMapping(path = "/create_role")

@@ -32,7 +32,7 @@ public class WorkerController {
 
     @GetMapping(path = "{nationalParkId}/workers")
     public List<WorkerDto> findAll(@PathVariable int nationalParkId) {
-        return workerService.findAllFromNationalPark(nationalParkId).stream().map(el -> workerConverter.toDto(el)).collect(Collectors.toList());
+        return workerService.findAllFromNationalPark(nationalParkId).stream().map(el -> workerConverter.toDto(el)).filter(el -> !el.getRole().equals("ROLE_SUPERADMIN") && !el.getRole().equals("ROLE_ADMIN")).collect(Collectors.toList());
     }
 
     @PostMapping(path = "/create_worker")
