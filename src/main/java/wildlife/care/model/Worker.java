@@ -39,5 +39,5 @@ public class Worker {
     private int nationalParkId;
 
     @Column(name = "role")
-    private String role;
+    private int role;
 }

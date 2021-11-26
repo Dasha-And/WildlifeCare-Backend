@@ -4,15 +4,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import wildlife.care.converter.WorkerConverter;
 import wildlife.care.exceptions.UserIsNotRegistered;
 import wildlife.care.exceptions.WrongPasswordException;
-import wildlife.care.model.LoginForm;
 import wildlife.care.model.Worker;
+import wildlife.care.model.LoginForm;
+import wildlife.care.service.RoleService;
 import wildlife.care.service.WorkerService;
+import wildlife.care.web.model.WorkerDto;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 public class WorkerController {
@@ -20,34 +24,50 @@ public class WorkerController {
     @Autowired
     WorkerService workerService;
 
-    @GetMapping(path = "{nationalParkId}/workers")
-    public List<Worker> findAll(@PathVariable int nationalParkId) {
-        return workerService.findAllFromNationalPark(nationalParkId);
-    }
+    @Autowired
+    RoleService roleService;
 
-    @GetMapping(path = "/workers/{position}")
-    public List<Worker> findAll(@PathVariable String position) {
-        return workerService.findAllByPosition(position);
+    @Autowired
+    WorkerConverter workerConverter;
+
+    @GetMapping(path = "{nationalParkId}/workers")
+    public List<WorkerDto> findAll(@PathVariable int nationalParkId) {
+        return workerService.findAllFromNationalPark(nationalParkId).stream().map(el -> workerConverter.toDto(el)).collect(Collectors.toList());
     }
 
     @PostMapping(path = "/create_worker")
-    public ResponseEntity<Worker> insert(@RequestBody Worker worker) {
-        return new ResponseEntity<>(workerService.insertWorker(worker), HttpStatus.CREATED);
+    public ResponseEntity<WorkerDto> insert(@RequestBody Worker worker) {
+        return new ResponseEntity<>(workerConverter.toDto(workerService.insertWorker(worker)), HttpStatus.CREATED);
     }
 
     @GetMapping(path = "/worker")
-    public ResponseEntity<Worker> findById(@RequestParam int id) {
-        return new ResponseEntity<>(workerService.findById(id), HttpStatus.OK);
+    public ResponseEntity<WorkerDto> findById(@RequestParam int id) {
+        return new ResponseEntity<>(workerConverter.toDto(workerService.findById(id)), HttpStatus.OK);
     }
 
     @PutMapping(path = "/update_worker")
-    public ResponseEntity<Worker> updateWorker(@RequestBody Worker worker) {
-        return new ResponseEntity<>(workerService.updateWorker(worker), HttpStatus.OK);
+    public ResponseEntity<WorkerDto> updateWorker(@RequestBody WorkerDto workerDto) {
+        return new ResponseEntity<>(workerConverter.toDto(workerService.updateWorker(workerConverter.toDomainModel(workerDto))), HttpStatus.OK);
     }
 
     @DeleteMapping(path = "/delete_worker")
     public void deleteWorker(@RequestParam int id) {
         workerService.deleteWorker(id);
+    }
+
+    @GetMapping(path = "/get_icon_url")
+    public ResponseEntity<String> getIconUrl(@RequestParam int id) {
+        System.out.println(workerService.findById(id).getRole());
+        System.out.println(workerConverter
+                .toDto(workerService
+                        .findById(id))
+                .getRole());
+        System.out.println();
+        return new ResponseEntity<>(roleService
+                .getIconUrlByName(workerConverter
+                        .toDto(workerService
+                                .findById(id))
+                        .getRole()), HttpStatus.OK);
     }
 
     @GetMapping(path = "/shortest_distance")
