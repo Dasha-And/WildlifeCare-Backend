@@ -55,7 +55,7 @@ public class WorkerController {
         workerService.deleteWorker(id);
     }
 
-    @GetMapping(path = "/get_icon_url")
+    @GetMapping(path = "/get_worker_icon_url")
     public ResponseEntity<String> getIconUrl(@RequestParam int id) {
         System.out.println(workerService.findById(id).getRole());
         System.out.println(workerConverter
