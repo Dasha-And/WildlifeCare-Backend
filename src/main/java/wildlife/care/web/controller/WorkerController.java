@@ -79,10 +79,10 @@ public class WorkerController {
     }
 
     @PostMapping(path = "/login")
-    public ResponseEntity<Worker> login(@RequestBody LoginForm userLoginForm) throws WrongPasswordException, UserIsNotRegistered {
+    public ResponseEntity<WorkerDto> login(@RequestBody LoginForm userLoginForm) throws WrongPasswordException, UserIsNotRegistered {
         Worker user = workerService.getWorkerDetailsByUsername(userLoginForm.getUsername());
         if (user != null && user.getPassword().equals(userLoginForm.getPassword())) {
-            return new ResponseEntity<>(user, HttpStatus.OK);
+            return new ResponseEntity<>(workerConverter.toDto(user), HttpStatus.OK);
         } if (user != null && !user.getPassword().equals(userLoginForm.getPassword())) {
             throw new WrongPasswordException("Wrong password");
         } else {
