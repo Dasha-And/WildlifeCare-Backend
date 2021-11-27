@@ -35,4 +35,8 @@ public class VaccineService {
         vaccineRepository.deleteById(id);
 
     }
+
+    public Vaccine findByName(String name) {
+        return vaccineRepository.findByName(name);
+    }
 }

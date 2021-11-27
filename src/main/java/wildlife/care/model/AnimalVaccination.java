@@ -22,10 +22,10 @@ public class AnimalVaccination {
     private int id;
 
     @Column(name = "vaccine_id")
-    private int vaccine_id;
+    private int vaccine;
 
     @Column(name = "animal_id")
-    private int animal_id;
+    private int animal;
 
     @Column(name = "date")
     private Date date;

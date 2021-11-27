@@ -7,4 +7,5 @@ import wildlife.care.model.Vaccine;
 @Repository
 public interface VaccineRepository extends JpaRepository<Vaccine, Integer> {
     Vaccine findById(int id);
+    Vaccine findByName(String name);
 }
