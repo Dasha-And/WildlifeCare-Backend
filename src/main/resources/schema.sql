@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS Vaccine(
 );
 
 CREATE TABLE IF NOT EXISTS Animal_vaccination(
-    id int PRIMARY KEY,
+    id serial PRIMARY KEY,
     vaccine_id int NOT NULL,
     animal_id int NOT NULL,
     date date NOT NULL,
