@@ -12,16 +12,12 @@ public class RestExceptionHandler {
     @ExceptionHandler(WrongPasswordException.class)
     @ResponseBody
     public ResponseEntity<Object> handleWrongPassword(Exception exception) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(exception.getMessage());
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(UserIsNotRegistered.class)
     @ResponseBody
     public ResponseEntity<Object> handleUserNotRegistred(Exception exception) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(exception.getMessage());
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
